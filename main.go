@@ -16,6 +16,8 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", handler.Home)
+	r.HandleFunc("/things", handler.Things)
+
 	fmt.Println("Server running on http://localhost:8080")
 	err := http.ListenAndServe(":8080", r)
 	if err != nil {
