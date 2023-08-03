@@ -8,22 +8,18 @@ import (
 )
 
 func Template(w http.ResponseWriter, tn string, data any) error {
-	headFile, err := os.ReadFile("render/layouts/head.html")
-	if err != nil {
-		return err
-	}
-	stylesFile, err := os.ReadFile("render/layouts/styles.html")
-	if err != nil {
-		return err
+	paths := []string{"render/layouts/head.html", "render/layouts/styles.html", fmt.Sprintf("render/src/%v.html", tn)}
+	parseMe := ""
+	for _, p := range paths {
+		file, err := os.ReadFile(p)
+		if err != nil {
+			return err
+		}
+
+		parseMe += string(file[:]) + "\n"
 	}
 
-	path := fmt.Sprintf("render/src/%v.html", tn)
-	templFile, err := os.ReadFile(path)
-	if err != nil {
-		return err
-	}
-
-	templ, err := template.New(path).Parse(fmt.Sprintf("%s\n%s\n%s", headFile, stylesFile, templFile))
+	templ, err := template.New(tn).Parse(parseMe)
 	if err != nil {
 		return err
 	}
