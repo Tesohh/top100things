@@ -15,9 +15,7 @@ func main() {
 	sb.Connect()
 
 	r := mux.NewRouter()
-	fs := http.FileServer(http.Dir("./static"))
-	r.Handle("/", fs)
-	// r.HandleFunc("/", handler.Home)
+	r.HandleFunc("/", handler.Home)
 	r.HandleFunc("/things", handler.Things)
 
 	fmt.Println("Server running on http://localhost:8080")
