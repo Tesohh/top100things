@@ -1,8 +1,15 @@
 <body>
-{{range $t := .things}}
-<div>    
-    <img class="" src="{{$t.ImageURL}}">
-    <span class="">{{$t.Name}}</span>
+{{range $r := .rankings}}
+<div class="">
+    <div class="bordered thingcard">
+        <img src="{{$r.Thing.ImageURL}}">
+        <div class="thingtextblock">
+            <span class="title">{{$r.Thing.Name}}</span>
+            <span class="description unemphatic">{{$r.Thing.Name}}</span>
+        </div>
+    </div>
 </div>
 {{end}}
+
+
 </body>

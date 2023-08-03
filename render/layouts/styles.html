@@ -1,8 +1,47 @@
+<!-- globally usable styles -->
 <style>
     body {
+        max-width: 700px;
+        margin:auto;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-    .yellow {
-        color: yellow;
+    .unemphatic {
+        color: gray;
+        font-style: italic;
+    }
+    .bordered {
+        border: 2px;
+        border-color: black;
+        border-style: solid;
+        border-radius: 10px;
+    }
+</style>
+
+<!-- thing cards -->
+<style>
+    .thingcard {
+        padding: 1rem;
+        max-width: 500px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .thingcard>.thingtextblock {
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+    .thingcard>img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    .thingtextblock>.title {
+        font-size: xx-large;
+    }
+    .thingtextblock>.description {
+        font-size: large;
     }
 </style>

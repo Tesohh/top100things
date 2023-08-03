@@ -12,5 +12,8 @@ func Things(w http.ResponseWriter, r *http.Request) {
 	var things []model.Thing
 	sb.SB.DB.From("things").Select("*").Execute(&things)
 
-	render.Template(w, "things", map[string]any{"things": things})
+	var rankings []model.Ranking
+	sb.SB.DB.From("rankings").Select("*", "thing_id(*)").Execute(&rankings)
+
+	render.Template(w, "things", map[string]any{"things": things, "rankings": rankings})
 }
