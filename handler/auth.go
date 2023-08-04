@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 
@@ -30,14 +31,20 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	qerr := r.URL.Query().Get("err")
 	serr := qerrFormat(qerr)
 
-	render.Template(w, "login", map[string]any{"type": "login", "err": serr})
+	err := render.Template(w, "login", map[string]any{"type": "login", "err": serr})
+	if err != nil {
+		fmt.Fprint(w, err)
+	}
 }
 
 func Signup(w http.ResponseWriter, r *http.Request) {
 	qerr := r.URL.Query().Get("err")
 	serr := qerrFormat(qerr)
 
-	render.Template(w, "login", map[string]any{"type": "signup", "err": serr})
+	err := render.Template(w, "login", map[string]any{"type": "signup", "err": serr})
+	if err != nil {
+		fmt.Fprint(w, err)
+	}
 }
 
 func Logout(w http.ResponseWriter, r *http.Request) {

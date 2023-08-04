@@ -8,7 +8,13 @@ import (
 )
 
 func Template(w http.ResponseWriter, tn string, data any) error {
-	paths := []string{"render/layouts/head.html", "render/layouts/styles.html", fmt.Sprintf("render/src/%v.html", tn)}
+	paths := []string{
+		"render/src/components.html",
+		"render/layouts/head.html",
+		"render/layouts/styles.html",
+		"render/layouts/navbar.html",
+		fmt.Sprintf("render/src/%v.html", tn),
+	}
 	parseMe := ""
 	for _, p := range paths {
 		file, err := os.ReadFile(p)
@@ -23,6 +29,9 @@ func Template(w http.ResponseWriter, tn string, data any) error {
 	if err != nil {
 		return err
 	}
-	templ.Execute(w, data)
+	err = templ.Execute(w, data)
+	if err != nil {
+		return err
+	}
 	return nil
 }

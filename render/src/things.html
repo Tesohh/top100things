@@ -1,20 +1,16 @@
 <body>
-{{if .rankings}}
-    {{range $r := .rankings}}
-    <div class="">
-        <div class="bordered thingcard">
-            <span class="position">{{$r.Position}}.</span>
-            <img src="{{$r.Thing.ImageURL}}">
-            <div class="thingtextblock">
-                <span class="title">{{$r.Thing.Name}}</span>
-                <span class="description unemphatic">{{$r.Description}}</span>
-            </div>
-        </div>
-    </div>
-    {{end}}
+{{if and .user (eq .user.ID .userid)}}
+<!-- write mode -->
+rick kickcss
 {{else}}
-    We couldn't find that user or his list is empty.
+    <!-- read only mode -->
+    {{if .rankings}}
+        {{range $r := .rankings}}
+        {{template "thingcard" $r}}
+        {{end}}
+    {{else}}
+        We couldn't find that user or his list is empty.
+    {{end}}
 {{end}}
-
 
 </body>

@@ -1,9 +1,13 @@
 <!-- globally usable styles -->
 <style>
     body {
-        max-width: fit-content;
+        max-width: 60rem;
         margin:auto;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-family: 'Segoe UI', 'SF Sans', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    a {
+        text-decoration: inherit;
+        color: inherit;
     }
     .unemphatic {
         color: gray;
@@ -23,6 +27,34 @@
     .error {
         color: red;
         font: bold;
+    }
+
+    #navbar {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 10px;
+    }
+    #navbar>#userdetails {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 10px;
+    }
+
+    button {
+        padding: 0.5em;
+        border-radius: 5px;
+        border-style: none;
+        box-shadow: none;
+        font-family: inherit;
+        background-color: #bebdbd;
+    }
+
+    .primary {
+        background-color: #4800bd;
+    }
+    .primary>a {
+        color: white;
     }
 </style>
 

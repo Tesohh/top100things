@@ -1,0 +1,12 @@
+{{define "thingcard"}}
+<div class="">
+    <div class="bordered thingcard">
+        <span class="position">{{.Position}}.</span>
+        <img src="{{.Thing.ImageURL}}">
+        <div class="thingtextblock">
+            <span class="title">{{.Thing.Name}}</span>
+            <span class="description unemphatic">{{.Description}}</span>
+        </div>
+    </div>
+</div>
+{{end}}
