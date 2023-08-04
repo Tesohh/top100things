@@ -9,10 +9,8 @@ import (
 
 func Template(w http.ResponseWriter, tn string, data any) error {
 	paths := []string{
-		"render/src/components.html",
-		"render/layouts/head.html",
-		"render/layouts/styles.html",
-		"render/layouts/navbar.html",
+		"render/src/+components.html",
+		"render/src/+layout.html",
 		fmt.Sprintf("render/src/%v.html", tn),
 	}
 	parseMe := ""

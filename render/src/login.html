@@ -1,3 +1,4 @@
+{{define "body"}}
 <body>
     {{.type}}
     <span class="error" id="errspan">{{.err}}</span>
@@ -16,3 +17,4 @@
     document.getElementById("email").addEventListener("input", hideError)
     document.getElementById("password").addEventListener("input", hideError)
 </script>
+{{end}}

@@ -1,4 +1,11 @@
-<!-- globally usable styles -->
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>top100things</title>
+</head>
+
+<!-- global -->
 <style>
     body {
         max-width: 60rem;
@@ -91,3 +98,23 @@
         font-size: large;
     }
 </style>
+
+<!-- Navbar -->
+<body>
+    <div id="navbar">
+        <a style="font-size: x-large; font: 900;" href="/">top100things</a>
+        <div style="flex-grow: 1;"></div>
+        <div id="userdetails">
+            {{if .user}}
+                <button class="primary"><a href="/things/{{.user.ID}}">My list</a></button>
+            {{else}}
+                <button class="primary"><a href="/signup">Sign up</a></button>
+                <button><a href="/login">Login</a></button>
+            {{end}}
+        </div>
+    </div>
+</body>
+
+{{template "body" .}}
+
+this is a footer
