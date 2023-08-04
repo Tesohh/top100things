@@ -1,7 +1,7 @@
 <!-- globally usable styles -->
 <style>
     body {
-        max-width: 700px;
+        max-width: fit-content;
         margin:auto;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
@@ -15,13 +15,22 @@
         border-style: solid;
         border-radius: 10px;
     }
+    input :invalid {
+        border: 1px;
+        border-color: red;
+        border-style: solid;
+    }
+    .error {
+        color: red;
+        font: bold;
+    }
 </style>
 
 <!-- thing cards -->
 <style>
     .thingcard {
         padding: 1rem;
-        max-width: 500px;
+        max-width: 600px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -37,6 +46,11 @@
         width: 100px;
         height: 100px;
         object-fit: cover;
+    }
+    .thingcard>.position {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: xx-large;
+        margin-right: 10px;
     }
     .thingtextblock>.title {
         font-size: xx-large;

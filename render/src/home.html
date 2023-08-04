@@ -3,5 +3,9 @@
 </head>
 
 <body>
-    <h1>Yoooo {{.}}</h1>
+    {{if .user}}
+    <h1>Yoooo {{.user.Email}}</h1>
+    {{else}}
+    <h1>No5t logged in</h1>
+    {{end}}
 </body>

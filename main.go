@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/Tesohh/top100things/handler"
+	"github.com/Tesohh/top100things/handler/form"
 	"github.com/Tesohh/top100things/sb"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
@@ -13,10 +14,11 @@ import (
 
 func main() {
 	sb.Connect()
-
 	r := mux.NewRouter()
-	r.HandleFunc("/", handler.Home)
-	r.HandleFunc("/things", handler.Things)
+	r.HandleFunc("/", handler.Home).Methods("GET")
+	r.HandleFunc("/things/{userid}", handler.Things).Methods("GET")
+	r.HandleFunc("/login", handler.Login).Methods("GET")
+	r.HandleFunc("/login/form", form.Login).Methods("POST")
 
 	fmt.Println("Server running on http://localhost:8080")
 	err := http.ListenAndServe(":8080", r)

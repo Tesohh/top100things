@@ -1,0 +1,18 @@
+<body>
+    {{.type}}
+    <span class="error" id="errspan">{{.err}}</span>
+    <form action="/{{.type}}/form" method="post">
+        <input type="email" name="email" id="email", placeholder="email">
+        <input type="password" name="password" id="password" minlength="8" placeholder="password">
+        <input type="submit">
+    </form>
+</body>
+
+<script>
+    const hideError = () => {
+            let err = document.getElementById("errspan")
+            err.style.display = "none"
+        }
+    document.getElementById("email").addEventListener("input", hideError)
+    document.getElementById("password").addEventListener("input", hideError)
+</script>
