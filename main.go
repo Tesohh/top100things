@@ -19,6 +19,9 @@ func main() {
 	r.HandleFunc("/things/{userid}", handler.Things).Methods("GET")
 	r.HandleFunc("/login", handler.Login).Methods("GET")
 	r.HandleFunc("/login/form", form.Login).Methods("POST")
+	r.HandleFunc("/signup", handler.Signup).Methods("GET")
+	r.HandleFunc("/signup/form", form.Signup).Methods("POST")
+	r.HandleFunc("/logout", handler.Logout).Methods("GET")
 
 	fmt.Println("Server running on http://localhost:8080")
 	err := http.ListenAndServe(":8080", r)
