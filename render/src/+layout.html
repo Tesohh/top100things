@@ -26,10 +26,8 @@
         border-style: solid;
         border-radius: 10px;
     }
-    input :invalid {
-        border: 1px;
-        border-color: red;
-        border-style: solid;
+    input {
+        font-family: inherit;
     }
     .error {
         color: red;
@@ -54,7 +52,7 @@
         border-style: none;
         box-shadow: none;
         font-family: inherit;
-        background-color: #bebdbd;
+        background-color: #d4d4d4;
     }
 
     .primary {
@@ -101,6 +99,9 @@
     .thingtextblock>.description {
         font-size: large;
     }
+    .thingtextblock>input {
+        border: none;
+    }
 </style>
 
 <!-- Navbar -->
@@ -110,9 +111,9 @@
         <div style="flex-grow: 1;"></div>
         <div id="userdetails">
             {{if .user}}
-                <button class="primary"><a href="/things/{{.user.ID}}">My list</a></button>
+                <button class="btn primary"><a href="/things/{{.user.ID}}">My list</a></button>
             {{else}}
-                <button class="primary"><a href="/signup">Sign up</a></button>
+                <button class="btn primary"><a href="/signup">Sign up</a></button>
                 <button><a href="/login">Login</a></button>
             {{end}}
         </div>

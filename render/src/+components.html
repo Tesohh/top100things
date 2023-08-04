@@ -1,7 +1,7 @@
 {{define "thingcard"}}
 <div class="">
     <div class="bordered thingcard">
-        <span class="position">{{.Position}}.</span>
+        <span class="position">{{printf "%03d" .Position}}.</span>
         <img src="{{.Thing.ImageURL}}">
         <div class="thingtextblock">
             <span class="title">{{.Thing.Name}}</span>
@@ -9,4 +9,17 @@
         </div>
     </div>
 </div>
+{{end}}
+
+{{define "newthing"}}
+
+    <form class="bordered thingcard" action="/TODO" method="post">
+        <span class="position">{{printf "%03d" (len (printf "a%*s" . "") )}}.</span> <!--Cursed-->
+        <input type="image" width="100" height="100" draggable="true">
+        <div class="thingtextblock">
+            <input class="title" type="text" placeholder="Name">
+            <input class="description unemphatic" type="text" placeholder="description">
+        </div>
+    </form>
+
 {{end}}

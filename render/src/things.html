@@ -1,8 +1,14 @@
 {{define "body"}}
 <body>
 {{if and .user (eq .user.ID .userid)}}
-<!-- write mode -->
-rick kickcss
+    <!-- write mode -->
+    <h1>My list</h1>
+    <div id="thingcards">
+    {{range $r := .rankings}}
+        {{template "thingcard" $r}}
+    {{end}}
+    {{template "newthing" len .rankings}}
+    </div>
 {{else}}
     <!-- read only mode -->
     {{if .rankings}}
