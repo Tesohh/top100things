@@ -6,9 +6,11 @@ rick kickcss
 {{else}}
     <!-- read only mode -->
     {{if .rankings}}
-        {{range $r := .rankings}}
-        {{template "thingcard" $r}}
-        {{end}}
+        <div id="thingcards">
+            {{range $r := .rankings}}
+                {{template "thingcard" $r}}
+            {{end}}
+        </div>
     {{else}}
         We couldn't find that user or his list is empty.
     {{end}}
