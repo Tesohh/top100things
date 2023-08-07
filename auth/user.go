@@ -10,11 +10,13 @@ import (
 )
 
 func User(r *http.Request) *supabase.User {
-	c, err := r.Cookie("AccessToken")
-	if err == nil { // if the cookie exists
-		user, err := sb.SB.Auth.User(context.Background(), c.Value)
+	ac, aerr := r.Cookie("AccessToken")
+	rc, rerr := r.Cookie("RefreshToken")
+	if aerr == nil && rerr == nil { // if the cookie exists
+		// user, err := sb.SB.Auth.User(context.Background(), ac.Value)
+		ad, err := sb.SB.Auth.RefreshUser(context.Background(), ac.Value, rc.Value)
 		if err == nil {
-			return user
+			return &ad.User
 		} else {
 			log.Println("user: " + err.Error())
 		}
