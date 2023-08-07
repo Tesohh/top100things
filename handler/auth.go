@@ -54,5 +54,11 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 		MaxAge:   -1,
 		HttpOnly: true,
 	})
+	http.SetCookie(w, &http.Cookie{
+		Name:     "RefreshToken",
+		Path:     "/",
+		MaxAge:   -1,
+		HttpOnly: true,
+	})
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }

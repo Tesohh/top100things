@@ -35,6 +35,13 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		HttpOnly: true,
 		Path:     "/",
 	})
+	http.SetCookie(w, &http.Cookie{
+		Name:     "RefreshToken",
+		Value:    user.RefreshToken,
+		Expires:  time.Now().Add(365 * 24 * time.Hour),
+		HttpOnly: true,
+		Path:     "/",
+	})
 
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }

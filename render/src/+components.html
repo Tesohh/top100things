@@ -2,7 +2,7 @@
 <div class="">
     <div class="bordered thingcard">
         <span class="position">{{printf "%03d" .Position}}.</span>
-        <img src="{{.Thing.ImageURL}}">
+        <img src="{{.Thing.ImageURL | safeURL}}">
         <div class="thingtextblock">
             <span class="title">{{.Thing.Name}}</span>
             <span class="description unemphatic">{{.Description}}</span>
@@ -13,13 +13,29 @@
 
 {{define "newthing"}}
 
-    <form class="bordered thingcard" action="/TODO" method="post">
+    <form class="bordered thingcard" action="/things/new/form" method="post" enctype="multipart/form-data">
         <span class="position">{{printf "%03d" (len (printf "a%*s" . "") )}}.</span> <!--Cursed-->
-        <input type="image" width="100" height="100" draggable="true">
+        <input type="file" width="100" height="100" id="file-dragarea" accept="image/*" onchange="handleFiles(this.files)" draggable="true" name="image" id="image">
         <div class="thingtextblock">
-            <input class="title" type="text" placeholder="Name">
-            <input class="description unemphatic" type="text" placeholder="description">
+            <input class="title" type="text" placeholder="Name" name="title" id="title">
+            <input class="description unemphatic" type="text" placeholder="description" name="description" id="description">
         </div>
+        <input type="submit">
     </form>
+
+    <script>
+        /** @type {HTMLElement} */
+        let dragarea = document.getElementById("file-dragarea")
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(en => {
+            dragarea.addEventListener(en, (e) => {
+                e.preventDefault() 
+                e.stopPropagation()
+            }, false)
+        })
+
+        ['dragenter', 'dragover'].forEach(en => {dragarea.addEventListener(en, (e) => dragarea.classList.add('dragged'), false)})
+        ['dragleave', 'drop'].forEach(en => {dragarea.addEventListener(en, (e) => dragarea.classList.remove('dragged'), false)})
+
+    </script>
 
 {{end}}
