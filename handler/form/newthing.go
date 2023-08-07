@@ -3,9 +3,11 @@ package form
 import (
 	"bytes"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"image"
 	"image/jpeg"
+	"image/png"
 	"io"
 	"mime/multipart"
 	"net/http"
@@ -16,19 +18,41 @@ import (
 	"github.com/nfnt/resize"
 )
 
-func resizeImage(r io.Reader) ([]byte, error) {
-	img, _, err := image.Decode(r)
+var errUnknownImgType = errors.New("can't process that image type")
+
+func resizeImage(r io.Reader, header *multipart.FileHeader) ([]byte, error) {
+	var img image.Image
+	var err error
+
+	filetype := header.Header.Get("Content-Type")
+
+	switch filetype {
+	case "image/jpeg":
+		img, err = jpeg.Decode(r)
+	case "image/png":
+		img, err = png.Decode(r)
+	default:
+		err = errUnknownImgType
+	}
+
 	if err != nil {
 		return nil, err
 	}
 	resizedImg := resize.Thumbnail(100, 100, img, resize.Lanczos2)
 
 	buf := new(bytes.Buffer)
-	err = jpeg.Encode(buf, resizedImg, nil)
+	switch filetype {
+	case "image/jpeg":
+		err = jpeg.Encode(buf, resizedImg, nil)
+	case "image/png":
+		err = png.Encode(buf, resizedImg)
+	default:
+		err = errUnknownImgType
+	}
+
 	if err != nil {
 		return nil, err
 	}
-
 	return buf.Bytes(), nil
 }
 
@@ -47,7 +71,7 @@ func processImage(r *http.Request) (string, error) {
 	}
 	defer rawImage.Close()
 
-	img, err := resizeImage(rawImage)
+	img, err := resizeImage(rawImage, header)
 	if err != nil {
 		return "", err
 	}
