@@ -2,7 +2,7 @@
 <body>
 {{if and .user (eq .user.ID .userid)}}
     <!-- write mode -->
-    <h1>My list</h1>
+    <h3>My list  <a class="btn primary" style="font-weight: normal;" href="#newthingform">New entry</a></h3>
     <div id="thingcards">
     {{range $r := .rankings}}
         {{template "thingcard" $r}}

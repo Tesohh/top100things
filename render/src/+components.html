@@ -13,7 +13,7 @@
 
 {{define "newthing"}}
 
-    <form class="bordered thingcard" action="/things/new/form" method="post" enctype="multipart/form-data">
+    <form class="bordered thingcard" action="/things/new/form" method="post" enctype="multipart/form-data" id="newthingform">
         <span class="position">{{printf "%03d" (len (printf "a%*s" . "") )}}.</span> <!--Cursed-->
 
         <label for="imagearea">
@@ -21,7 +21,7 @@
         </label>
         <input type="file" width="100" height="100" accept="image/png,image/jpeg" draggable="true" name="image" id="imagearea">
         <div class="thingtextblock">
-            <input class="title" type="text" placeholder="Name" name="title" id="title" minlength="2">
+            <input class="title" type="text" placeholder="Name" name="title" id="title" minlength="1">
             <input class="description unemphatic" type="text" placeholder="description" name="description" id="description">
         </div>
         <input type="submit" id="newthingsubmit">

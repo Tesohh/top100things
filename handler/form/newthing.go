@@ -120,6 +120,6 @@ func NewThing(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "ranking: "+err.Error())
 	}
 
-	http.Redirect(w, r, "/things/"+user.ID, http.StatusSeeOther)
+	http.Redirect(w, r, "/things/"+user.ID+"#newthingform", http.StatusSeeOther)
 
 }
