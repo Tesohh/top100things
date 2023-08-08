@@ -7,6 +7,7 @@ import (
 
 	"github.com/Tesohh/top100things/handler"
 	"github.com/Tesohh/top100things/handler/form"
+	"github.com/Tesohh/top100things/handler/htmx"
 	"github.com/Tesohh/top100things/sb"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
@@ -23,6 +24,9 @@ func main() {
 	r.HandleFunc("/signup", handler.Signup).Methods("GET")
 	r.HandleFunc("/signup/form", form.Signup).Methods("POST")
 	r.HandleFunc("/logout", handler.Logout).Methods("GET")
+
+	r.HandleFunc("/htmx/test", htmx.Test).Methods("GET")
+	r.HandleFunc("/htmx/thingimage", htmx.ThingImage).Methods("GET")
 
 	fmt.Println("Server running on http://localhost:8080")
 	err := http.ListenAndServe(":8080", r)

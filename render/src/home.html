@@ -1,5 +1,6 @@
 {{define "body"}}
 <body>
     <h3>This is what people think are the top 100 best things ever:</h3>
+    <span hx-get="/htmx/test" hx-swap="innerHTML" hx-trigger="load"></span>
 </body>
 {{end}}
