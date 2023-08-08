@@ -22,7 +22,7 @@
         <input type="file" width="100" height="100" accept="image/png,image/jpeg" draggable="true" name="image" id="imagearea">
         <div class="thingtextblock">
             <input class="title" type="text" placeholder="Name" name="title" id="title" minlength="1" 
-                hx-get="/htmx/thingimage" hx-trigger="load, input changed delay:300ms[!imageUploaded]" hx-target="#imagepreview" hx-swap="outerHTML">
+                hx-get="/htmx/thingimage" hx-trigger="load, input[!imageUploaded] changed delay:300ms" hx-target="#imagepreview" hx-swap="outerHTML">
             <input class="description unemphatic" type="text" placeholder="description" name="description" id="description">
         </div>
         <input type="submit" id="newthingsubmit">
@@ -47,13 +47,13 @@
     </style>
 
     <script>
-        let imageUploaded = false
+        window.imageUploaded = false
         document.getElementById("imagearea").onchange = (ev) => {
             if(event.target.files.length > 0){
                 let src = URL.createObjectURL(event.target.files[0]);
                 let preview = document.getElementById("imagepreview");
                 preview.src = src;
-                imageUploaded = true
+                window.imageUploaded = true
             }
         }
         function canIFetch() {
